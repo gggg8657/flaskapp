@@ -20,8 +20,9 @@ pipeline {
                 }
             }
             steps {
-                echo 'Building the application...'
-                echo "Building version ${NEW_VERSION}"
+                script {
+                    buildApp()
+                }
             }
         }
         
@@ -32,15 +33,16 @@ pipeline {
                 }
             }
             steps {
-                echo 'Testing the application...'
+                script {
+                    testApp()
+                }
             }
         }
         
         stage("Deploy") {
             steps {
-                echo 'Deploying the application...'
-                withCredentials([usernamePassword(credentialsId: 'admin_user_credentials', usernameVariable: 'USER', passwordVariable: 'PWD')]) {
-                    sh 'printf ${USER}'
+                script {
+                    deployApp()
                 }
             }
         }
@@ -58,3 +60,18 @@ pipeline {
         }
     }
 }
+
+def buildApp() {
+    echo 'Building the application...'
+}
+
+def testApp() {
+    echo 'Testing the application...'
+}
+
+def deployApp() {
+    echo 'Deploying the application...'
+    echo "Deploying version ${params.VERSION}"
+}
+
+return this
