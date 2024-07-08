@@ -36,6 +36,7 @@ pipeline {
 		}
 		stage("Tag and Push") {
 			steps {
+                echo "Tage and Push"
 				withCredentials([[$class: 'UsernamePasswordMultiBinding',
 				credentialsId: 'docker-hub', 
 				usernameVariable: 'DOCKER_USER_ID', 
