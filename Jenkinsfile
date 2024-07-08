@@ -1,62 +1,42 @@
 pipeline {
-    agent any
-
-    environment {
-        NEW_VERSION = "1.0.0"
-        ADMIN_CREDENTIALS = credentials('admin_user_credentials')
-    }
-
-    parameters {
-        string(name: 'VERSION', defaultValue: '', description: 'Deployment version')
-        choice(name: 'VERSION_CHOICE', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'Choose a version to deploy')
-        booleanParam(name: 'executeTests', defaultValue: true, description: 'Execute tests')
-    }
-
-    stages {
-        stage("Build") {
-            when {
-                expression {
-                    env.GIT_BRANCH == 'origin/main'
-                }
+   agent any
+   parameters {
+      choice(name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description: '')
+      booleanParam(name: 'executeTests', defaultValue: true, description: '')
+   }
+   stages {
+      stage("init") {
+         steps {
+            script {
+               gv = load "script.groovy"
             }
-            steps {
-                script {
-                    buildApp()
-                }
+         }
+      }
+      stage("build") {
+         steps {
+            script {
+               gv.buildApp()
             }
-        }
-        
-        stage("Test") {
-            when {
-                expression {
-                    env.GIT_BRANCH == 'origin/test' || env.GIT_BRANCH == ''
-                }
+         }
+      }
+      stage("test") {
+         when {
+            expression {
+               params.executeTests
             }
-            steps {
-                script {
-                    testApp()
-                }
+         }
+         steps {
+            script {
+               gv.testApp()
             }
-        }
-        
-        stage("Deploy") {
-            steps {
-                script {
-                    deployApp()
-                }
+         }
+      }
+      stage("deploy") {
+         steps {
+            script {
+               gv.deployApp()
             }
-        }
-    }
-    
-    post {
-        always {
-            echo 'Building...'
-        }
-        success {
-            echo 'Success'
-        }
-        failure {
-            echo 'Failure'
-        }
-    }
+         }
+      }
+   }
 }
