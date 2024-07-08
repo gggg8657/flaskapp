@@ -4,6 +4,9 @@ pipeline {
 		choice(name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description: '')
 		booleanParam(name: 'executeTests', defaultValue: true, description: '')
 	}
+	triggers {
+		pollSCM('H/5 * * * *') // Polls SCM every 5 minutes
+	}
 	stages {
 		stage("init") {
 			steps {
@@ -36,7 +39,7 @@ pipeline {
 		}
 		stage("deploy") {
 			steps {
-				echo 'deploying the applicaiton...'
+				echo 'deploying the application...'
 			}
 		}
 	}
