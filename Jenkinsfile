@@ -4,6 +4,11 @@ pipeline {
       NEW_VERSION = "1.0.0"
       ADMIN_CREDENTIALS = credentials('admin_user_credentials')
    }
+   parameters {
+      string(name: 'VERSION', defaultValue: '', description: 'deployment vers')
+      choice(name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description)
+      booleanParam(name: 'executeTests', defaultValue: true, description: '')
+   }
    stages {
       stage("build") {
          when{
@@ -29,8 +34,13 @@ pipeline {
       stage("deploy") {
          steps {
             echo 'deploying the applicaiton...'
-            echo "deploying with ${ADMIN_CREDENTIALS}"
-            sh 'printf ${ADMIN_CREDENTIALS}'
+            withCredentials([[$class: 'UsernamePasswordMultiBinding',
+            credentialsId: 'admin_user_credentials',
+            usernameVariable: 'USER',
+            passwordVariable: 'PWD'
+            ]]){
+               sh 'printf ${USER}'
+            }
          }
       }
    }
