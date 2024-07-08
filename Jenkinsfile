@@ -1,7 +1,7 @@
 pipeline {
 	agent any
 	parameters {
-		choice(name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description: '')
+		choice(name: 'VERSION', choices: ['1.0.0','1.2.0','1.3.0'], description: '')
 		booleanParam(name: 'executeTests', defaultValue: true, description: '')
 	}
 	stages {
@@ -19,7 +19,7 @@ pipeline {
 		}
 		stage("Build") {
 			steps {
-				sh 'docker build -t flaskjenkins:v1.0.0 .'
+				sh 'docker build -t flask-jenkins:v1.0.0 .'
 			}
 		}
 		stage("test") {
