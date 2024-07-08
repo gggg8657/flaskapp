@@ -1,11 +1,8 @@
 pipeline {
 	agent any
 	parameters {
-		choice(name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description: '')
+		choice(name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0','latest'], description: '')
 		booleanParam(name: 'executeTests', defaultValue: true, description: '')
-	}
-	triggers {
-		pollSCM('H/5 * * * *') // Polls SCM every 5 minutes
 	}
 	stages {
 		stage("init") {
@@ -22,7 +19,7 @@ pipeline {
 		}
 		stage("Build") {
 			steps {
-				sh 'docker build -t flaskjenkins:v1.0.0 .'
+				sh 'docker build -t flask-jenkins:latest .'
 			}
 		}
 		stage("test") {
@@ -37,9 +34,22 @@ pipeline {
 				}
 			}
 		}
+		stage("Tag and Push") {
+			steps {
+				withCredentials([[$class: 'UsernamePasswordMultiBinding',
+				credentialsId: 'docker-hub', 
+				usernameVariable: 'DOCKER_USER_ID', 
+				passwordVariable: 'DOCKER_USER_PASSWORD'
+				]]) {
+					sh "docker tag flask-jenkins:latest ${DOCKER_USER_ID}/jenkins-app:${BUILD_NUMBER}"
+					sh "docker login -u ${DOCKER_USER_ID} -p ${DOCKER_USER_PASSWORD}"
+					sh "docker push ${DOCKER_USER_ID}/jenkins-app:${BUILD_NUMBER}"
+				}
+			}
+		}
 		stage("deploy") {
 			steps {
-				echo 'deploying the application...'
+				echo 'deploying the applicaiton...'
 			}
 		}
 	}
