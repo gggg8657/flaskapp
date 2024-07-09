@@ -5,6 +5,8 @@ kind: Pod
 metadata:
 
   name: flaskapp-pod
+  labels: 
+    app: flaskpod
 
 spec:
 

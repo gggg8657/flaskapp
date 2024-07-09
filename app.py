@@ -21,7 +21,7 @@ def home():
                     <a href="/contact">Contact</a>
                 </nav>
                 <h1>Welcome to the Home Page</h1>
-                <p>This is a simple Flask web application.</p>
+                <p>Hello Flask.</p>
             </body>
         </html>
     ''')
