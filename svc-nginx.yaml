@@ -1,0 +1,25 @@
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: my-nginx
+
+  labels:
+
+    run: my-nginx
+
+spec:
+
+  type: NodePort # Service 의 Type 을 명시하는 부분입니다. 자세한 설명은 추후 말씀드리겠습니다.
+
+  ports:
+
+  - port: 80
+
+    protocol: TCP
+
+  selector: # 아래 label 을 가진 Pod 을 매핑하는 부분입니다.
+
+    app: nginx 
