@@ -79,52 +79,52 @@ def contact():
         </html>
     ''')
 
-# @app.route('/game', methods=['GET', 'POST'])
-# def game():
-#     if 'number' not in session:
-#         session['number'] = random.randint(1, 100)
-#         session['attempts'] = 0
+@app.route('/game', methods=['GET', 'POST'])
+def game():
+    if 'number' not in session:
+        session['number'] = random.randint(1, 100)
+        session['attempts'] = 0
 
-#     message = ''
-#     if request.method == 'POST':
-#         guess = int(request.form['guess'])
-#         session['attempts'] += 1
-#         if guess < session['number']:
-#             message = 'Higher! Try again.'
-#         elif guess > session['number']:
-#             message = 'Lower! Try again.'
-#         else:
-#             message = f'Congratulations! You guessed it in {session['attempts']} attempts.'
-#             session.pop('number')
-#             session.pop('attempts')
+    message = ''
+    if request.method == 'POST':
+        guess = int(request.form['guess'])
+        session['attempts'] += 1
+        if guess < session['number']:
+            message = 'Higher! Try again.'
+        elif guess > session['number']:
+            message = 'Lower! Try again.'
+        else:
+            message = f'Congratulations! You guessed it in {session['attempts']} attempts.'
+            session.pop('number')
+            session.pop('attempts')
 
-#     return render_template_string('''
-#         <html>
-#             <head>
-#                 <title>Guess the Number Game</title>
-#                 <style>
-#                     body { font-family: Arial, sans-serif; margin: 40px; }
-#                     nav { margin-bottom: 20px; }
-#                     nav a { margin-right: 10px; text-decoration: none; color: blue; }
-#                 </style>
-#             </head>
-#             <body>
-#                 <nav>
-#                     <a href="/">Home</a>
-#                     <a href="/about">About</a>
-#                     <a href="/contact">Contact</a>
-#                     <a href="/game">Game</a>
-#                 </nav>
-#                 <h1>Guess the Number Game</h1>
-#                 <form method="post">
-#                     <label for="guess">Enter your guess (1-100):</label>
-#                     <input type="number" id="guess" name="guess" min="1" max="100" required>
-#                     <button type="submit">Guess</button>
-#                 </form>
-#                 <p>{{ message }}</p>
-#             </body>
-#         </html>
-#     ''', message=message)
+    return render_template_string('''
+        <html>
+            <head>
+                <title>Guess the Number Game</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 40px; }
+                    nav { margin-bottom: 20px; }
+                    nav a { margin-right: 10px; text-decoration: none; color: blue; }
+                </style>
+            </head>
+            <body>
+                <nav>
+                    <a href="/">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/game">Game</a>
+                </nav>
+                <h1>Guess the Number Game</h1>
+                <form method="post">
+                    <label for="guess">Enter your guess (1-100):</label>
+                    <input type="number" id="guess" name="guess" min="1" max="100" required>
+                    <button type="submit">Guess</button>
+                </form>
+                <p>{{ message }}</p>
+            </body>
+        </html>
+    ''', message=message)
 
 if __name__ == '__main__':
     app.run(debug=True)
