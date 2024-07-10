@@ -49,7 +49,7 @@ def about():
                     <a href="/game">Game</a>
                 </nav>
                 <h1>About Us</h1>
-                <p>Information about the website or company.</p>
+                <p>This is DongJu's Pilot flask web.</p>
             </body>
         </html>
     ''')
@@ -74,7 +74,7 @@ def contact():
                     <a href="/game">Game</a>
                 </nav>
                 <h1>Contact Us</h1>
-                <p>Contact information goes here.</p>
+                <p>email: 010.2757.8506 information goes here.</p>
             </body>
         </html>
     ''')
