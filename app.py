@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, request, session
+from flask import Flask, render_template_string, request, session, redirect, url_for
 import random
 
 app = Flask(__name__)
@@ -23,11 +23,10 @@ def home():
                     <a href="/contact">Contact</a>
                     <a href="/game">Game</a>
                     <a href="/tictactoe">TicTacToe</a>
-                    <a href="/flappybird">FlappyBird</a>
+                    <a href="/ci_cd">CI/CD</a>
                 </nav>
-                <h1>Welcome to the Home Page</h1>
-                <p>Hello WebApp.
-PC -> Docker -> k8s -> Azure -> deploy -> !!!! </p>
+                <h1>Welcome to the Jungle</h1>
+                <p>Hello WebApp.</p>
             </body>
         </html>
     ''')
@@ -52,7 +51,7 @@ def about():
                     <a href="/game">Game</a>
                 </nav>
                 <h1>About Us</h1>
-                <p>This is DongJu's Pilot flask web.</p>
+                <p>This is DongJu's Pilot flask web.</p>  
             </body>
         </html>
     ''')
@@ -129,15 +128,7 @@ def game():
             </body>
         </html>
     ''', message=message)
-
-# 틱택토 게임 상태 초기화
-@app.route('/reset_tictactoe')
-def reset_tictactoe():
-    session['board'] = [['' for _ in range(3)] for _ in range(3)]
-    session['player'] = 'X'
-    session['winner'] = None
-    return redirect(url_for('tictactoe_game'))
-
+    
 @app.route('/tictactoe', methods=['GET', 'POST'])
 def tictactoe_game():
     if 'board' not in session:
@@ -205,33 +196,56 @@ def check_winner(board):
         return 'Tie'
     return None
 
-@app.route('/flappybird', methods=['GET', 'POST'])
-def flappybird_game():
-    if 'bird_position' not in session:
-        session['bird_position'] = 250
-    gravity = 5
-    jump_strength = 50
 
-    if request.method == 'POST':
-        session['bird_position'] -= jump_strength
-
-    session['bird_position'] += gravity
-    session['bird_position'] = min(max(session['bird_position'], 0), 480)  # Keep bird within screen bounds
-
+@app.route('/ci_cd')
+def ci_cd():
     return render_template_string('''
-        <html>
-            <body>
-                <h1>플래피 버드 클론</h1>
-                <div style="position:relative; width:400px; height:500px; border:1px solid black;">
-                    <div style="position:absolute; top:{{ bird_position }}px; left:50px; width:20px; height:20px; background-color:blue;"></div>
-                </div>
-                <form method="post">
-                    <button type="submit">점프</button>
-                </form>
-                <a href="/flappybird">다시하기</a>
-            </body>
-        </html>
-    ''', bird_position=session['bird_position'])
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Methods Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        h1 { color: #333; }
+        h2 { color: #555; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>CI/CD Methods Documentation</h1>
+
+    <h2>1. PC -> Docker -> Kubernetes (k8s) -> Azure -> Deploy</h2>
+    <ul>
+        <li><strong>PC (Local Development)</strong>: Developers write and test code locally.</li>
+        <li><strong>Docker</strong>: The code is built into a Docker image.</li>
+        <li><strong>Kubernetes (k8s)</strong>: A Kubernetes cluster is used to orchestrate and manage the containerized application.</li>
+        <li><strong>Azure</strong>: The cluster is deployed to Azure using Azure Kubernetes Service (AKS) or similar services.</li>
+        <li><strong>Deploy</strong>: The application is deployed through AKS.</li>
+    </ul>
+
+    <h2>2. PC -> Azure -> VM -> Azure -> Deploy</h2>
+    <ul>
+        <li><strong>PC (Local Development)</strong>: Developers write and test code locally.</li>
+        <li><strong>Azure</strong>: Connect to Azure.</li>
+        <li><strong>VM (Virtual Machine)</strong>: Deploy the code to an Azure Virtual Machine.</li>
+        <li><strong>Azure</strong>: Run the application using Azure services on the VM.</li>
+        <li><strong>Deploy</strong>: Deploy the application via the Azure VM.</li>
+    </ul>
+
+    <h2>3. PC -> Kubernetes (k8s) -> Docker -> Deploy</h2>
+    <ul>
+        <li><strong>PC (Local Development)</strong>: Developers write and test code locally.</li>
+        <li><strong>Kubernetes (k8s)</strong>: Use a local Kubernetes cluster to manage the containerized application.</li>
+        <li><strong>Docker</strong>: Build Docker images and run them in the Kubernetes cluster.</li>
+        <li><strong>Deploy</strong>: Deploy the application through the local Kubernetes cluster.</li>
+    </ul>
+
+</body>
+</html>
+''')
 
 if __name__ == '__main__':
     app.run(debug=True)
