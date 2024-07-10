@@ -26,7 +26,8 @@ def home():
                     <a href="/flappybird">FlappyBird</a>
                 </nav>
                 <h1>Welcome to the Home Page</h1>
-                <p>Hello WebApp.</p>
+                <p>Hello WebApp.
+PC -> Docker -> k8s -> Azure -> deploy -> !!!! </p>
             </body>
         </html>
     ''')
