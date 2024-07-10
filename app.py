@@ -74,7 +74,8 @@ def contact():
                     <a href="/game">Game</a>
                 </nav>
                 <h1>Contact Us</h1>
-                <p>email:  information goes here.</p>
+                <p> 💌 email:  gggg8657@gmail.com</p>
+                <p> 📞 phone: 010-2757-8506 </p>
             </body>
         </html>
     ''')
