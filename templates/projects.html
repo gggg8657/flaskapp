@@ -4,9 +4,102 @@
 
 {% block content %}
     <h1>My Projects</h1>
-    <ul>
-        <li>Project 1: Description of project 1</li>
-        <li>Project 2: Description of project 2</li>
-        <li>Project 3: Description of project 3</li>
-    </ul>
+    
+    <h2>Research Projects</h2>
+    <div class="row">
+        <!-- Research Project 1 -->
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/150">
+                    <span class="card-title">파일 접근 제어 및 관제 프레임워크</span>
+                </div>
+                <div class="card-content">
+                    <p>파일 접근 제어 및 관제 프레임워크에 대한 설명...</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+        <!-- Research Project 2 -->
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{ url_for('static', filename='images/CAD_Project_Structure.png') }}">
+                    <span class="card-title">ICT 인프라 데이터 (CAD) 기반 빅데이터 플랫폼 구축</span>
+                </div>
+                <div class="card-content">
+                    <p>ICT 인프라 데이터 (CAD) 기반 빅데이터 플랫폼 구축에 대한 설명...</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+        <!-- Research Project 3 -->
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/150">
+                    <span class="card-title">2차원 이미지로부터 3차원 얼굴 복원 연구</span>
+                </div>
+                <div class="card-content">
+                    <p>2차원 이미지로부터 3차원 얼굴 복원 연구에 대한 설명...</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Side Projects</h2>
+    <div class="row">
+        <!-- Side Project 1 -->
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/150">
+                    <span class="card-title">Better Than Project</span>
+                </div>
+                <div class="card-content">
+                    <p>Better Than Project에 대한 설명...</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+        <!-- Side Project 2 -->
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/150">
+                    <span class="card-title">Profitty</span>
+                </div>
+                <div class="card-content">
+                    <p>Profitty에 대한 설명...</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+        <!-- Side Project 3 -->
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/150">
+                    <span class="card-title">카페찾는 부엉이</span>
+                </div>
+                <div class="card-content">
+                    <p>카페찾는 부엉이에 대한 설명...</p>
+                </div>
+                <div class="card-action">
+                    <a href="https://coffeezip.vercel.app" target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
