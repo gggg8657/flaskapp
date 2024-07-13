@@ -183,33 +183,6 @@ Microsoft Azure provides cloud computing services, enabling easy and scalable de
 
 ---
 
-## Visual Diagrams 🎨
-
-Below are some visual diagrams representing the deployment architecture and CI/CD workflows.
-
-### Diagram 1: Full Deployment Architecture
-![Diagram 1](/Users/gimdongju/Documents/workspace/flaskapp/static/figs/image.png)
-
-This diagram illustrates the full deployment architecture, showcasing how the application flows from source control through various stages of the CI/CD pipeline, ultimately being deployed on Azure VMs.
-
-### Diagram 2: Simplified CI/CD Pipeline
-![Diagram 2](sandbox:/mnt/data/47300B2B-B252-4D57-9EA9-A63CA0E1D972.png)
-Here, we see a simplified view of the CI/CD pipeline focusing on the key components involved in the continuous integration and continuous deployment processes.
-
-### Diagram 3: Kubernetes Deployment
-![Diagram 3](sandbox:/mnt/data/60737A80-AC3B-4EC3-A1AD-DB0589AF92D0.png)
-This diagram shows the deployment of Docker images to a Kubernetes cluster, illustrating how Kubernetes manages container orchestration and scaling.
-
-### Diagram 4: Azure VM Scale Set
-![Diagram 4](sandbox:/mnt/data/707BC4F9-973D-427D-B9FC-20788204E3C4.png)
-This visual highlights the use of Azure VM Scale Sets (VMSS) for scaling the application. It demonstrates the configuration of inbound and outbound rules, as well as the setup of a Bastion server for secure access.
-
-### Diagram 5: Simple Deployment with Docker and GitHub Actions
-![Diagram 5](sandbox:/mnt/data/4277B20A-75BD-46E5-9880-412AB52BA24D.png)
-A simplified representation of deploying a Dockerized Flask application using GitHub Actions for CI/CD, emphasizing the streamlined workflow and automation.
-
----
-
 ## Conclusion 🏁
 
 Through this project, I have gained extensive experience with CI/CD methodologies using a variety of tools and platforms. The integration of Docker with CI/CD pipelines, orchestrated deployments using Kubernetes, and scalable solutions on Microsoft Azure have significantly improved the efficiency and reliability of deployments. This comprehensive approach ensures that applications are deployed quickly, securely, and with minimal downtime.
