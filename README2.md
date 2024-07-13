@@ -1,15 +1,15 @@
 
-# Flask App CI/CD with Microsoft Azure 🚀
+# Flask App CI/CD with Microsoft Azure
 
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white) ![CI/CD](https://img.shields.io/badge/CI%2FCD-007ACC?style=for-the-badge&logo=continuousintegration&logoColor=white)
 
 ---
 
-## Introduction 🌟
+## Introduction
 
 In this project, I have explored various CI/CD methods using a simple Flask application. The deployment and automation processes leverage several tools and platforms, including Docker, GitHub Actions, Kubernetes (k8s), Jenkins, and Microsoft Azure. This document outlines the detailed steps and methodologies I have employed to achieve efficient and automated deployments.
 
-## Tools Used 🛠️
+## Tools Used
 
 - **Docker** ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 - **GitHub Actions** ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
@@ -19,37 +19,37 @@ In this project, I have explored various CI/CD methods using a simple Flask appl
 
 ---
 
-## CI/CD Process 📈
+## CI/CD Process
 
-### Docker 🐳
+### Docker
 
 Docker is used to create isolated environments for our applications. Each environment is encapsulated in a Docker image, ensuring consistency across different stages of the CI/CD pipeline.
 
 - Created Docker images for the Flask application.
 - Used these images as the base for further CI/CD processes.
 
-### GitHub Actions ⚙️
+### GitHub Actions
 
 GitHub Actions automates the CI/CD pipeline directly from the GitHub repository.
 
 - Configured workflows to build and test the Docker images.
 - Set up actions to deploy the images to various environments.
 
-### Kubernetes (K8s) ☸️
+### Kubernetes (K8s)
 
 Kubernetes orchestrates the deployment, scaling, and management of containerized applications.
 
 - Deployed Docker images to a Kubernetes cluster.
 - Managed CI/CD workflows using Kubernetes for scaling and resilience.
 
-### Jenkins 🚀
+### Jenkins
 
 Jenkins is an open-source automation server that facilitates CI/CD.
 
 - Configured Jenkins pipelines to automate the build and deployment processes.
 - Integrated Jenkins with Docker to build and push images.
 
-### Microsoft Azure ☁️
+### Microsoft Azure
 
 Microsoft Azure provides cloud computing services, enabling easy and scalable deployments.
 
@@ -60,9 +60,9 @@ Microsoft Azure provides cloud computing services, enabling easy and scalable de
 
 ---
 
-## Detailed Steps 📝
+## Detailed Steps
 
-### Docker CI/CD 🐋
+### Docker CI/CD
 
 1. **Build Docker Image:**
    ```bash
@@ -80,7 +80,7 @@ Microsoft Azure provides cloud computing services, enabling easy and scalable de
    docker push myregistry/flaskapp:latest
    ```
 
-### GitHub Actions CI/CD 💻
+### GitHub Actions CI/CD
 
 1. **Configure Workflow:**
    ```yaml
@@ -104,7 +104,7 @@ Microsoft Azure provides cloud computing services, enabling easy and scalable de
            docker push myregistry/flaskapp:latest
    ```
 
-### Kubernetes CI/CD ☸️
+### Kubernetes CI/CD
 
 1. **Deploy to K8s Cluster:**
    ```yaml
@@ -129,7 +129,7 @@ Microsoft Azure provides cloud computing services, enabling easy and scalable de
            - containerPort: 5000
    ```
 
-### Jenkins CI/CD 📦
+### Jenkins CI/CD
 
 1. **Jenkinsfile:**
    ```groovy
@@ -157,13 +157,13 @@ Microsoft Azure provides cloud computing services, enabling easy and scalable de
    }
    ```
 
-### Microsoft Azure ☁️
+### Microsoft Azure
 
 1. **Deploy Docker Image to Azure VM:**
    ```bash
    az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --admin-username azureuser --generate-ssh-keys
 
-   az vm extension set --resource-group myResourceGroup --vm-name myVM --name DockerExtension --publisher Microsoft.Azure.Extensions --version 1.2
+   az vm extension set      --resource-group myResourceGroup      --vm-name myVM      --name DockerExtension      --publisher Microsoft.Azure.Extensions      --version 1.2
 
    ssh azureuser@<public-ip-address> "docker run -d -p 80:5000 myregistry/flaskapp:latest"
    ```
@@ -172,7 +172,7 @@ Microsoft Azure provides cloud computing services, enabling easy and scalable de
    ```bash
    az vmss create --resource-group myResourceGroup --name myVMSS --image UbuntuLTS --upgrade-policy-mode automatic --admin-username azureuser --generate-ssh-keys
 
-   az vmss extension set --resource-group myResourceGroup --vmss-name myVMSS --name DockerExtension --publisher Microsoft.Azure.Extensions --version 1.2
+   az vmss extension set      --resource-group myResourceGroup      --vmss-name myVMSS      --name DockerExtension      --publisher Microsoft.Azure.Extensions      --version 1.2
 
    ssh azureuser@<public-ip-address> "docker run -d -p 80:5000 myregistry/flaskapp:latest"
    ```
@@ -183,34 +183,7 @@ Microsoft Azure provides cloud computing services, enabling easy and scalable de
 
 ---
 
-## Visual Diagrams 🎨
-
-Below are some visual diagrams representing the deployment architecture and CI/CD workflows.
-
-### Diagram 1: Full Deployment Architecture
-![Diagram 1](/Users/gimdongju/Documents/workspace/flaskapp/static/figs/image.png)
-
-This diagram illustrates the full deployment architecture, showcasing how the application flows from source control through various stages of the CI/CD pipeline, ultimately being deployed on Azure VMs.
-
-### Diagram 2: Simplified CI/CD Pipeline
-![Diagram 2](sandbox:/mnt/data/47300B2B-B252-4D57-9EA9-A63CA0E1D972.png)
-Here, we see a simplified view of the CI/CD pipeline focusing on the key components involved in the continuous integration and continuous deployment processes.
-
-### Diagram 3: Kubernetes Deployment
-![Diagram 3](sandbox:/mnt/data/60737A80-AC3B-4EC3-A1AD-DB0589AF92D0.png)
-This diagram shows the deployment of Docker images to a Kubernetes cluster, illustrating how Kubernetes manages container orchestration and scaling.
-
-### Diagram 4: Azure VM Scale Set
-![Diagram 4](sandbox:/mnt/data/707BC4F9-973D-427D-B9FC-20788204E3C4.png)
-This visual highlights the use of Azure VM Scale Sets (VMSS) for scaling the application. It demonstrates the configuration of inbound and outbound rules, as well as the setup of a Bastion server for secure access.
-
-### Diagram 5: Simple Deployment with Docker and GitHub Actions
-![Diagram 5](sandbox:/mnt/data/4277B20A-75BD-46E5-9880-412AB52BA24D.png)
-A simplified representation of deploying a Dockerized Flask application using GitHub Actions for CI/CD, emphasizing the streamlined workflow and automation.
-
----
-
-## Conclusion 🏁
+## Conclusion
 
 Through this project, I have gained extensive experience with CI/CD methodologies using a variety of tools and platforms. The integration of Docker with CI/CD pipelines, orchestrated deployments using Kubernetes, and scalable solutions on Microsoft Azure have significantly improved the efficiency and reliability of deployments. This comprehensive approach ensures that applications are deployed quickly, securely, and with minimal downtime.
 
