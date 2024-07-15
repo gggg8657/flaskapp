@@ -1,19 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_assets import Environment, Bundle
-from flask_material import Material
 import random
 import re
 import socket
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-Material(app)
-
-assets = Environment(app)
-js = Bundle('js/main.js', filters='jsmin', output='gen/packed.js')
-css = Bundle('css/style.css', filters='cssmin', output='gen/packed.css')
-assets.register('js_all', js)
-assets.register('css_all', css)
 
 # 컴퓨터 이름, ip
 hostname = socket.gethostname()
@@ -43,4 +34,4 @@ def contact():
     return render_template('contact.html', message=message)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
