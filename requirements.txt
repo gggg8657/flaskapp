@@ -1,2 +1,4 @@
-flask
-requests
+Flask-Assets
+jsmin
+cssmin
+flask-material

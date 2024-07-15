@@ -3,44 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Portfolio{% endblock %}</title>
-    <!-- Import Materialize CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-    <!-- Import Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <title>{% block title %}Your Portfolio{% endblock %}</title>
+    {% include 'material/includes/material_css.html' %}
+    {% assets "css_all" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="/" class="brand-logo">SKT FLY AI Flask</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/contact">Contact</a></li>
-    </ul>
-
+    {% include 'material/includes/material_nav.html' %}
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-    <!-- Import Materialize JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems);
-        });
-    </script>
+    {% include 'material/includes/material_js.html' %}
+    {% assets "js_all" %}
+        <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
 </body>
 </html>

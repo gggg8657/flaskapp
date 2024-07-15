@@ -1,41 +1,16 @@
 {% extends "base.html" %}
-
-{% block title %}Contact Me{% endblock %}
-
 {% block content %}
-    <h1>Contact Me</h1>
-    <form>
-        <div class="input-field">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Welcome to My Portfolio</span>
+                <p>I am a web developer specializing in Flask and Material Design.</p>
+            </div>
+            <div class="card-action">
+                <a href="{{ url_for('projects') }}">View My Projects</a>
+            </div>
         </div>
-        <div class="input-field">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="input-field">
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" class="materialize-textarea" required></textarea>
-        </div>
-        <a href="#" id="mailtoLink" class="btn waves-effect waves-light" onclick="sendMail()">Send via Email</a>
-    </form>
-    <p>{{ message }}</p>
-    <div>
-        <a href="https://github.com/gggg8657" target="_blank" class="btn-floating btn-large waves-effect waves-light black">
-            <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.instagram.com/dongju_kim_/" target="_blank" class="btn-floating btn-large waves-effect waves-light pink">
-            <i class="fab fa-instagram"></i>
-        </a>
     </div>
-    <script>
-        function sendMail() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            const subject = `Message from ${name}`;
-            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-            window.location.href = `mailto:gggg8657@gmail.com?subject=${subject}&body=${body}`;
-        }
-    </script>
+</div>
 {% endblock %}
